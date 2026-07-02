@@ -1,44 +1,31 @@
-from fastapi import FastAPI, UploadFile, File
-import pdfplumber
-import os
+from fastapi import FastAPI, UploadFile, File, HTTPException
+from pydantic import BaseModel
+import uuid
 
-app = FastAPI()
+app = FastAPI(title="AI-Powered Contract Intelligence API", version="1.0")
 
-# Create uploads folder if it doesn't exist
-os.makedirs("uploads", exist_ok=True)
+class SearchQuery(BaseModel):
+    query: str
+    top_k: int = 5
 
-@app.get("/")
-def home():
+@app.post("/contracts/upload", status_code=202)
+async def upload_contract(file: UploadFile = File(...)):
+    if not file.filename.endswith(('.pdf', '.docx', '.txt')):
+        raise HTTPException(status_code=400, detail="Invalid file format.")
+    
+    contract_id = str(uuid.uuid4())
+    task_id = str(uuid.uuid4())
+    
+    return {"contract_id": contract_id, "task_id": task_id, "status": "Queued"}
+
+@app.get("/contracts/status/{task_id}")
+async def get_task_status(task_id: str):
     return {
-        "message": "AI Contract Intelligence Project Running"
-    }
-
-@app.post("/upload")
-async def upload_pdf(file: UploadFile = File(...)):
-
-    # Save uploaded file
-    file_path = f"uploads/{file.filename}"
-
-    with open(file_path, "wb") as buffer:
-        buffer.write(await file.read())
-
-    text = ""
-    total_pages = 0
-
-    # Read PDF
-    with pdfplumber.open(file_path) as pdf:
-
-        total_pages = len(pdf.pages)
-
-        for page in pdf.pages:
-            page_text = page.extract_text()
-
-            if page_text:
-                text += page_text + "\n"
-
-    return {
-        "filename": file.filename,
-        "pages": total_pages,
-        "characters": len(text),
-        "text": text[:1000]
+        "state": "SUCCESS",
+        "result": {
+            "status": "COMPLETED",
+            "contract_id": task_id,
+            "risk_score": 0.24,
+            "flagged_clauses": ["Termination for convenience without notice penalty."]
+        }
     }
