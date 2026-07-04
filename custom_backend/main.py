@@ -1,3 +1,4 @@
+# Day 3: Background processing rules and task execution updates.
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from pydantic import BaseModel
 import uuid
