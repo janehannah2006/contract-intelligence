@@ -1,4 +1,4 @@
-# Day 3: Background processing rules and task execution updates.
+# Day 4: Structural schema validation and endpoint integration testing.
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from pydantic import BaseModel
 import uuid
