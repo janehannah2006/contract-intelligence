@@ -1,4 +1,3 @@
-
 import pypdf
 import spacy
 from transformers import pipeline
