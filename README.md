@@ -1,72 +1,27 @@
 # AI Contract Intelligence System
 
 ## Project Overview
+The AI Contract Intelligence System is an enterprise-grade document intelligence platform designed to ingest unstructured legal contracts, perform high-precision Named Entity Recognition (NER), build semantic vector indexes, and run deep contextual transformer inferences to classify clause vulnerabilities.
+## 🎖️ Module Ownership & Architecture Breakdowns
 
-The AI Contract Intelligence System analyzes legal contracts and extracts useful information such as contract type, entities, clauses, and metadata.
+### 👤 Gandikota Prasannatha (Lead AI & Data Infrastructure Engineer)
+I engineered and successfully compiled the entire production-ready AI pipeline, local vector database storage layer, and quick-start environment automation scripts. **My working code is fully operational and isolated within the following directories:**
 
-## Week 1 Implementation
+* **📂 `/app` (FastAPI Core Application):**
+  * Handled multi-part form data uploads for contract documents.
+  * Formulated request/response validation logic and exposed public API integration routes.
+* **📂 `/utils` (NLP Engine & Vector DB Store):**
+  * *`nlp_engine.py`:* Wired up the `spaCy` Named Entity Recognition pipeline along with the Hugging Face Large-Scale Zero-Shot Transformer model (`bart-large-mnli`) to score structural clause vulnerabilities with high mathematical precision.
+  * *`vector_store.py`:* Built the system text chunking logic and integrated localized `ChromaDB` storage to index high-dimensional semantic vector embeddings.
+* **📄 `launch.bat`:** Created the automated environment script for one-click runtime setups without manual shell navigation.
 
-### Features
-- FastAPI Backend Development
-- PDF Upload Functionality
-- Text Extraction from Contracts
-- OCR Support for Scanned Documents
-- Named Entity Recognition (NER)
-- Clause Detection
-- Risk Analysis
+## 📅 Implementation Roadmap
 
-## Week 2 - NLP Pipeline Implementation
+### Week 1 & 2 Core Fundamentals
+* **FastAPI Backend Development:** Multi-part file stream management.
+* **PDF Upload & Processing:** Binary ingestion handling via `pypdf`.
+* **Named Entity Recognition (NER):** Automatic extraction of **Organizations (`ORG`)**, **Dates (`DATE`)**, and **Currency (`MONEY`)** using pre-trained pipelines.
+* **Vector Vector Store:** Local persistence layer and high-dimensional semantic search indexing inside `ChromaDB`.
+* **Deep Text Clause Inference:** Sentence-level contextual checks running on local CPU resources.
 
-### Contract Tokenizer
-
-The Contract Tokenizer is responsible for preprocessing legal contract text before analysis.
-
-Features:
-- Removes unnecessary whitespace and formatting inconsistencies
-- Splits contract text into individual tokens
-- Preserves punctuation for legal text analysis
-- Prepares contract data for inference and classification
-
-Example:
-
-Input:
-"This Agreement, effective June 2026."
-
-Output:
-["This", "Agreement", ",", "effective", "June", "2026", "."]
-
-### Contract Inference Engine
-
-The Contract Inference Engine analyzes tokenized contract text and extracts useful metadata.
-
-Current Capabilities:
-- Contract type identification
-- Token count analysis
-- Metadata extraction
-- Basic contract classification
-
-Supported Contract Types:
-- Non-Disclosure Agreement (NDA)
-- Service Agreement
-- Employment Agreement
-
-### Week 2 Processing Flow
-
-Contract Text
-→ Text Cleaning
-→ Tokenization
-→ Inference Engine
-→ Contract Classification
-→ Metadata Extraction
-
-### Week 2 Outcome
-
-The Week 2 implementation establishes the NLP foundation for intelligent contract understanding and prepares the system for future AI-based legal document analysis.
-
-## Technologies Used
-
-- Python
-- FastAPI
-- Regular Expressions (Regex)
-- NLP Concepts
-- Git & GitHub
+### Processing Pipeline Flow
