@@ -1,27 +1,52 @@
-# AI Contract Intelligence System
+# AI-Powered Contract Intelligence Platform
+An advanced, automated legal document analysis system designed to parse standard PDF contracts, extract core entities, evaluate regulatory compliance flags, and enable high-speed semantic search over localized clause databases
+##  About the Project & Work Don
+Manual review of legal documents is traditionally time-consuming, expensive, and prone to human oversight. This project introduces an **AI-Powered Contract Intelligence Platform** to fully automate the parsing and risk-assessment pipeline. 
+By leveraging cutting-edge Natural Language Processing (NLP) pipelines and Deep Learning models, the system ingests raw PDF contracts, extracts critical operational entities, classifies hidden compliance risks, and indexes clauses into a localized vector database for instant semantic search capability.
+### Core Architecture Modules:
+1. **Extraction Engine (spaCy)**: Parses raw, unstructured text to capture foundational variables like corporate identities, operational dates, and monetary values.
+2. **Zero-Shot Risk Classification (BART Large MNLI)**: Employs a deep learning model to evaluate legal clauses against compliance risks (e.g., liability limits, data leaks) without requiring a pre-labeled training dataset.
+3. **Vector Storage & Semantic Exploration (ChromaDB)**: Embeds and indexes sentences into a specialized vector store, allowing users to scan for hidden liabilities using conceptual terms instead of basic keyword matching.
+##  System Stack
 
-## Project Overview
-The AI Contract Intelligence System is an enterprise-grade document intelligence platform designed to ingest unstructured legal contracts, perform high-precision Named Entity Recognition (NER), build semantic vector indexes, and run deep contextual transformer inferences to classify clause vulnerabilities.
-## 🎖️ Module Ownership & Architecture Breakdowns
+The application is engineered using high-performance web and data-science frameworks:
+* **Backend Framework**: FastAPI (Uvicorn ASGI Server)
+* **Natural Language Processing (NLP)**: spaCy (`en_core_web_sm`)
+* **Deep Learning Engine**: Hugging Face Transformers (`bart-large-mnli`)
+* **Vector Database**: ChromaDB (for structural text-embedding persistence)
+* **Frontend Interface**: TailwindCSS + Vanilla JavaScript Dashboard
+##  Project Directory Structure
 
-### 👤 Gandikota Prasannatha (Lead AI & Data Infrastructure Engineer)
-I engineered and successfully compiled the entire production-ready AI pipeline, local vector database storage layer, and quick-start environment automation scripts. **My working code is fully operational and isolated within the following directories:**
+```text
+contract_intelligence/
+├── app/                  # Main backend server & FastAPI routing logic
+├── data/                 # Local directory for document storage & persistence
+├── utils/                # AI inference engines, tokenizers, & processing helper scripts
+├── launch.bat            # Automated local orchestration & server startup script
+└── requirements.txt      # Core Python library dependencies
 
-* **📂 `/app` (FastAPI Core Application):**
-  * Handled multi-part form data uploads for contract documents.
-  * Formulated request/response validation logic and exposed public API integration routes.
-* **📂 `/utils` (NLP Engine & Vector DB Store):**
-  * *`nlp_engine.py`:* Wired up the `spaCy` Named Entity Recognition pipeline along with the Hugging Face Large-Scale Zero-Shot Transformer model (`bart-large-mnli`) to score structural clause vulnerabilities with high mathematical precision.
-  * *`vector_store.py`:* Built the system text chunking logic and integrated localized `ChromaDB` storage to index high-dimensional semantic vector embeddings.
-* **📄 `launch.bat`:** Created the automated environment script for one-click runtime setups without manual shell navigation.
+ Setup & How to Run the Project
+1. Prerequisites
+Ensure you have Python 3.10+ installed on your Windows environment.
 
-## 📅 Implementation Roadmap
+2. Environment Initialization
+Before launching the script, open your terminal in the root directory and install the necessary dependencies:
 
-### Week 1 & 2 Core Fundamentals
-* **FastAPI Backend Development:** Multi-part file stream management.
-* **PDF Upload & Processing:** Binary ingestion handling via `pypdf`.
-* **Named Entity Recognition (NER):** Automatic extraction of **Organizations (`ORG`)**, **Dates (`DATE`)**, and **Currency (`MONEY`)** using pre-trained pipelines.
-* **Vector Vector Store:** Local persistence layer and high-dimensional semantic search indexing inside `ChromaDB`.
-* **Deep Text Clause Inference:** Sentence-level contextual checks running on local CPU resources.
+Bash
+pip install -r requirements.txt
+python -m spacy download en_core_web_sm
+3. Launching the Application Server
+To boot up the complete AI pipeline and local server:
 
-### Processing Pipeline Flow
+Open your project folder (C:\Users\Pranathi\contract_intelligence).
+
+Double-click the launch.bat file.
+
+A black Command Prompt window will appear. Wait approximately 30 to 60 seconds for the heavy AI models to load into memory.
+
+Once you see the line INFO: Application startup complete., the server is active.
+
+4. Accessing the Dashboard
+Open your web browser and go to: http://127.0.0.1:8000
+
+Tip: You can safely Minimize (—) the black terminal window to clear your desktop, but do not close it (clicking X will shut down the server engine).
